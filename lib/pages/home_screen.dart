@@ -1,3 +1,4 @@
+import 'package:flutkart/models/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutkart/utils/flutkart.dart';
 import 'package:flutkart/Api.dart';
@@ -43,54 +44,49 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(Flutkart.name),
-        actions: <Widget>[
-          Padding(
-            child: Icon(Icons.search),
-            padding: const EdgeInsets.only(right: 10.0),
-          )
-        ],
-      ),
-      drawer: Drawer(),
-      body: FutureBuilder(
-        future: Api.getCategoryAll(),
-        builder: (context,snapshot){
-           if (snapshot.hasData) {
-                  return Center(
-                    child: Text(
-                       snapshot.data,
-                       style: TextStyle(fontSize: 20.0),
-                    ),
-                  );
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
+    var futureBuilder = new FutureBuilder(
+      future: Api.getCategoryAll(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+          case ConnectionState.waiting:
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          default:
+            if (snapshot.hasError)
+              return new Text('Error: ${snapshot.error}');
+            else
+              return createListView(context, snapshot);
         }
-        ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.amber,
-        onPressed: () => {},
-        child: Icon(Icons.shopping_cart, color: Colors.white),
+      },
+    );
+
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Categorias"),
       ),
+      body: futureBuilder,
     );
   }
-}
 
-class CardView extends StatelessWidget {
-  final double cardSize;
-  CardView(this.cardSize);
-
-  @override
-  Widget build(BuildContext context) {
-    return new Card(
-        child: new SizedBox.fromSize(
-      size: new Size(cardSize, cardSize),
-    ));
+  Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
+    List<Categories> values = snapshot.data.categories;
+    return new ListView.builder(
+        itemCount: values.length,
+        itemBuilder: (BuildContext context, int index) {
+          return new Column(
+            children: <Widget>[
+              new ListTile(
+                title: new Text(values[index].name),
+              ),
+              new Divider(height: 2.0,),
+            ],
+          );
+        },
+    );
   }
 }
