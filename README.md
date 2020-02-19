@@ -1,6 +1,6 @@
-# Flutkart
+# Ofertas Zump
 
-A new shopping app built with flutter.
+A new Offers app built with flutter.
 
 ## Getting Started
 

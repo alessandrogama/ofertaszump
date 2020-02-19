@@ -8,4 +8,8 @@ class MyNavigator {
   static void goToIntro(BuildContext context) {
     Navigator.pushNamed(context, "/intro");
   }
+
+  static void goToOffers(BuildContext context) {
+    Navigator.pushNamed(context, "/offerZump");
+  }
 }

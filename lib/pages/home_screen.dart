@@ -1,10 +1,17 @@
 import 'package:flutkart/models/categories.dart';
 import 'package:flutter/material.dart';
-import 'package:flutkart/utils/flutkart.dart';
 import 'package:flutkart/Api.dart';
+import 'package:flutkart/utils/my_navigator.dart';
+
+import 'offerZump.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
+  const HomeScreen({
+    Key key,
+    this.values
+  }) : super(key: key);
+  final List<Categories> values;
   _HomeScreenState createState() => new _HomeScreenState();
 }
 
@@ -15,35 +22,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   AnimationController animCtrl2;
   Animation<double> animation2;
   bool showFirst = true;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // Animation init
-    animCtrl = new AnimationController(
-        duration: new Duration(milliseconds: 500), vsync: this);
-    animation = new CurvedAnimation(parent: animCtrl, curve: Curves.easeOut);
-    animation.addListener(() {
-      this.setState(() {});
-    });
-    animation.addStatusListener((AnimationStatus status) {});
-
-    animCtrl2 = new AnimationController(
-        duration: new Duration(milliseconds: 1000), vsync: this);
-    animation2 = new CurvedAnimation(parent: animCtrl2, curve: Curves.easeOut);
-    animation2.addListener(() {
-      this.setState(() {});
-    });
-    animation2.addStatusListener((AnimationStatus status) {});
-  }
-
-  @override
-  void dispose() {
-    animCtrl.dispose();
-    super.dispose();
-  }
-
+  bool testt = true;
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +43,41 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         }
       },
     );
-
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("Categorias"),
       ),
-      body: futureBuilder,
+      body: testt ? futureBuilder : OfferZump(),
+      backgroundColor: Colors.white,
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text(''),
+              decoration: BoxDecoration(
+                image: new DecorationImage(
+                  image: NetworkImage("https://www.online.citibank.co.in/special-offers/home/images/New_Offers/thumbnail/New-Offers.jpg")
+                  ) 
+              ),
+            ),
+            ListTile(
+              title: Text('Categorias'),
+              onTap: () {
+                MyNavigator.goToHome(context);
+              },
+            ),
+            ListTile(
+              title: Text('Ofertas'),
+              onTap: () {
+                setState(() {
+                  testt = false;
+                });
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -82,10 +90,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             children: <Widget>[
               new ListTile(
                 title: new Text(values[index].name),
+              onTap: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                builder: (context) => OfferZump(cat: values[index]),
+          ),
+        );
+              },
               ),
               new Divider(height: 2.0,),
             ],
           );
+          
         },
     );
   }
