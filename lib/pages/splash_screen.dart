@@ -35,25 +35,17 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 50.0,
-                        child: Icon(
-                          Icons.shopping_cart,
-                          color: Colors.greenAccent,
-                          size: 50.0,
+                      Container(
+                          child: Image(
+                            width: 200.0,
+                            height: 200.0,
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/images/logo200x200.png')
+                          )
                         ),
-                      ),
                       Padding(
-                        padding: EdgeInsets.only(top: 10.0),
+                        padding: EdgeInsets.only(bottom: 2),
                       ),
-                      Text(
-                        Flutkart.name,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24.0),
-                      )
                     ],
                   ),
                 ),

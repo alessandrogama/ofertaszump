@@ -35,7 +35,7 @@ class _OfferZumpState extends State<OfferZump> {
     );
     return new  Scaffold(
       appBar: new AppBar(
-        title: new Text("Ofertas"),
+      title: Image.asset('assets/images/logo200x200.png', width: 120, height: 120)      
       ),
       body: futureBuilder,
       backgroundColor: Colors.white,
@@ -57,12 +57,12 @@ Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
                   child: 
                   Image.network(
                     values[index].thumbnail,
-                    width: 100.0, 
-                    height: 100.0,
+                    width: 200.0, 
+                    height: 200.0,
                     alignment:  Alignment.topLeft,
                   )),
                   new Container( 
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(10.0),
                   child:                    
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -72,8 +72,7 @@ Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
                         Text(values[index].store.name, style: TextStyle(color: Colors.black.withOpacity(0.5))),
                         Text(values[index].priceFrom.toString(),style: TextStyle(fontSize: 30,color: Colors.red,fontFamily: 'Arial')),
                       ],
-                    ),
-                    
+                    ),                    
                   )
             ],
            crossAxisAlignment: CrossAxisAlignment.start,

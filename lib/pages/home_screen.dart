@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   AnimationController animCtrl2;
   Animation<double> animation2;
   bool showFirst = true;
-  bool testt = true;
+  bool flagMenu = true;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +45,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Categorias"),
+      title: Image.asset('assets/images/logo200x200.png', width: 120, height: 120)      
       ),
-      body: testt ? futureBuilder : OfferZump(),
+      body: flagMenu ? futureBuilder : OfferZump(),
       backgroundColor: Colors.white,
       drawer: Drawer(
         child: ListView(
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               title: Text('Ofertas'),
               onTap: () {
                 setState(() {
-                  testt = false;
+                  flagMenu = false;
                 });
               },
             ),
