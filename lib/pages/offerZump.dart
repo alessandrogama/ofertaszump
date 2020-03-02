@@ -2,6 +2,7 @@ import 'package:flutkart/models/categories.dart';
 import 'package:flutkart/models/offers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutkart/Api.dart';
+import 'package:url_launcher/url_launcher.dart'; 
 
 class OfferZump extends StatefulWidget {
   @override
@@ -42,41 +43,33 @@ class _OfferZumpState extends State<OfferZump> {
     );
   }
 }
-
+_launchURL(url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
     List<Offers> values = snapshot.data.offers;
     return new ListView.builder(
         itemCount: values.length,
         itemBuilder: (BuildContext context, int index) {
-        return Card(
-          color: Colors.white,
-          child: Column(
-              children: <Widget>[
-                new Container( 
-                  padding: const EdgeInsets.all(9.0),
-                  child: 
-                  Image.network(
-                    values[index].thumbnail,
-                    width: 200.0, 
-                    height: 200.0,
-                    alignment:  Alignment.topLeft,
-                  )),
-                  new Container( 
-                  padding: const EdgeInsets.all(10.0),
-                  child:                    
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(values[index].name, style: TextStyle(fontSize: 12)),
-                        Text(values[index].store.name, style: TextStyle(color: Colors.black.withOpacity(0.5))),
-                        Text(values[index].priceFrom.toString(),style: TextStyle(fontSize: 30,color: Colors.red,fontFamily: 'Arial')),
-                      ],
-                    ),                    
-                  )
-            ],
-           crossAxisAlignment: CrossAxisAlignment.start,
-          )
-    );        },
+          return Card(
+            child: ListTile(
+                leading: Image.network(
+                      values[index].thumbnail,
+                    ),
+                title: Text(values[index].name),
+                subtitle: Text('Preço: ${values[index].priceFrom}',
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),
+                ),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                _launchURL(values[index].link);
+              },
+              ),
+            );        
+        },
     );
   }
