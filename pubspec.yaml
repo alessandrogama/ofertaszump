@@ -11,6 +11,8 @@ dependencies:
   http: ^0.12.0+4
   rxdart:
   dio:
+  url_launcher: 
+
 
 dev_dependencies:
   flutter_test:
