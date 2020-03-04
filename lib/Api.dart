@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:flutkart/models/categories.dart' as category;
-import 'package:flutkart/models/offers.dart' as offer;
+import 'package:ofertasZump/models/categories.dart' as category;
+import 'package:ofertasZump/models/offers.dart' as offer;
 
 
 //token developer

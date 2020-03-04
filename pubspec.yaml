@@ -1,4 +1,4 @@
-name: flutkart
+name: ofertasZump
 description: A new Flutter project.
 
 dependencies:
@@ -11,7 +11,8 @@ dependencies:
   http: ^0.12.0+4
   rxdart:
   dio:
-  url_launcher: 
+  url_launcher:
+  google_fonts: ^0.3.9 
 
 
 dev_dependencies:

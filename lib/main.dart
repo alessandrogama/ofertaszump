@@ -1,8 +1,8 @@
-import 'package:flutkart/pages/offerZump.dart';
+import 'package:ofertasZump/pages/offerZump.dart';
 import 'package:flutter/material.dart';
-import 'package:flutkart/pages/home_screen.dart';
-import 'package:flutkart/pages/intro_screen.dart';
-import 'package:flutkart/pages/splash_screen.dart';
+import 'package:ofertasZump/pages/home_screen.dart';
+import 'package:ofertasZump/pages/intro_screen.dart';
+import 'package:ofertasZump/pages/splash_screen.dart';
 
 var routes = <String, WidgetBuilder>{
   "/home": (BuildContext context) => HomeScreen(),

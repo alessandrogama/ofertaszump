@@ -1,7 +1,7 @@
-import 'package:flutkart/utils/flutkart.dart';
+import 'package:ofertasZump/utils/flutkart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutkart/utils/my_navigator.dart';
-import 'package:flutkart/widgets/walkthrough.dart';
+import 'package:ofertasZump/utils/my_navigator.dart';
+import 'package:ofertasZump/widgets/walkthrough.dart';
 
 class IntroScreen extends StatefulWidget {
   @override

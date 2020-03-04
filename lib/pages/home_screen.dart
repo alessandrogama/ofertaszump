@@ -1,7 +1,7 @@
-import 'package:flutkart/models/categories.dart';
+import 'package:ofertasZump/models/categories.dart';
 import 'package:flutter/material.dart';
-import 'package:flutkart/Api.dart';
-import 'package:flutkart/utils/my_navigator.dart';
+import 'package:ofertasZump/Api.dart';
+import 'package:ofertasZump/utils/my_navigator.dart';
 
 import 'offerZump.dart';
 
