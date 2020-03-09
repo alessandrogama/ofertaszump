@@ -12,4 +12,7 @@ class MyNavigator {
   static void goToOffers(BuildContext context) {
     Navigator.pushNamed(context, "/offerZump");
   }
+  static void goToHomeInitial(BuildContext context) {
+    Navigator.pushNamed(context, "/homeInitial");
+  }
 }

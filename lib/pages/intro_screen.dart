@@ -80,7 +80,7 @@ class IntroScreenState extends State<IntroScreen> {
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0)),
                   onPressed: () =>
-                      lastPage ? null : MyNavigator.goToHome(context),
+                      lastPage ? null : MyNavigator.goToHomeInitial(context),
                 ),
                 FlatButton(
                   child: Text(lastPage ? Flutkart.gotIt : Flutkart.next,
@@ -89,7 +89,7 @@ class IntroScreenState extends State<IntroScreen> {
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0)),
                   onPressed: () => lastPage
-                      ? MyNavigator.goToHome(context)
+                      ? MyNavigator.goToHomeInitial(context)
                       : controller.nextPage(
                           duration: Duration(milliseconds: 300),
                           curve: Curves.easeIn),

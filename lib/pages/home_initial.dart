@@ -5,21 +5,17 @@ import 'package:ofertasZump/Api.dart';
 import 'package:url_launcher/url_launcher.dart'; 
 import 'package:google_fonts/google_fonts.dart';
 
-class OfferZump extends StatefulWidget {
+class HomeInitial extends StatefulWidget {
   @override
-  const OfferZump({
-    Key key,
-    this.cat
-  }) : super(key: key);
-  final Categories cat;
-  _OfferZumpState createState() => new _OfferZumpState();
+
+  _HomeInitialState createState() => new _HomeInitialState();
 }
 
-class _OfferZumpState extends State<OfferZump> { 
+class _HomeInitialState extends State<HomeInitial> { 
   @override
   Widget build(BuildContext context) {
     var futureBuilder = new FutureBuilder(
-      future: Api.getOfferSearchForIdCategory(widget.cat.id.toString()),
+      future: Api.getOfferSearchForWord('informática'),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
